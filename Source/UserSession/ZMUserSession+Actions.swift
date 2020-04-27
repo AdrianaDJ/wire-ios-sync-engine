@@ -144,7 +144,7 @@ import Foundation
     private func appendReadReceiptIfNeeded(with userInfo: NotificationUserInfo, in conversation: ZMConversation) {
         if let originalMessage = userInfo.message(in: conversation, managedObjectContext: self.managedObjectContext) as? ZMClientMessage,
             originalMessage.needsReadConfirmation {
-            let confirmation = ZMGenericMessage.message(content: ZMConfirmation.confirm(messageId: originalMessage.nonce!, type: .READ))
+            let confirmation = GenericMessage(content: Confirmation(messageId: originalMessage.nonce!, type: .read))
             conversation.appendClientMessage(with: confirmation)
         }
     }
